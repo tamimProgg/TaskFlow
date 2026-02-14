@@ -1,8 +1,6 @@
 import { Sparkles, TrendingUp } from "lucide-react";
 
-const Header = () => {
-  const progress = 50;
-  const activeTodos = 2;
+const Header = ({progress, activeTodos}) => {
   return (
     <header className="backdrop-blur-2xl bg-white/5 rounded-3xl border border-white/10 p-6 mb-4 shadow-2xl">
       <div className="flex items-center justify-between mb-4">

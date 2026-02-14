@@ -55,10 +55,10 @@ const App = () => {
         todo.id === id ? { ...todo, completed: !todo.completed } : todo,
       ),
     );
-    const todo = todos.find((t) => t.id === id)
-    if(!todo.completed) {
-      playSound('completed')
-      showNotification('🎉 Great Job! Task Completed')
+    const todo = todos.find((t) => t.id === id);
+    if (!todo.completed) {
+      playSound("completed");
+      showNotification("🎉 Great Job! Task Completed");
     }
   };
 
@@ -112,6 +112,18 @@ const App = () => {
     playSound("delete");
     showNotification("🗑️ Task deleted", "info");
   };
+
+  //clear all completed task
+  const clearCompleted = () => {
+    setTodo(todos.filter((t) => !t.completed));
+    playSound("deleted");
+    showNotification("🗑️ Task deleted", "info");
+  };
+
+  const activeTodos = todos.filter((t) => !t.completed).length;
+  const completedTodos = todos.filter((t) => t.completed).length;
+  const progress = todos.length > 0 ? (completedTodos / todos.length) * 100 : 0;
+
   return (
     <>
       <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-950 to-pink-950 p-3 sm:p-6 relative overflow-hidden">
@@ -122,8 +134,16 @@ const App = () => {
         />
 
         <div className="max-w-3xl mx-auto relative z-10">
-          <Header />
-          <StatsGrid />
+          <Header
+            activeTodos={activeTodos}
+            progress={progress}
+            totalTodos={todos.length}
+          />
+          <StatsGrid
+            activeTodos={activeTodos}
+            totalTodos={todos.length}
+            completedTodos={completedTodos}
+          />
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -140,9 +160,12 @@ const App = () => {
             editingText={editingText}
             onEditTextChange={(e) => setEditingText(e.target.value)}
             onEditKeyPress={handleEditKeyPress}
-            onToggle = {toggleTodo}
+            onToggle={toggleTodo}
           />
-          <ClearButton />
+          <ClearButton
+            completedTodos={completedTodos}
+            onClick={clearCompleted}
+          />
         </div>
         <style>
           {`

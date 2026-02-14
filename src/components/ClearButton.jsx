@@ -1,6 +1,4 @@
-const ClearButton = () => {
-  let completedTodos
-  let onClick
+const ClearButton = ({completedTodos,onClick}) => {
 
   if(completedTodos === 0) return null
   return (
