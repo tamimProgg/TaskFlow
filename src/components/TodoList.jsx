@@ -1,8 +1,7 @@
 import { Sparkle } from "lucide-react";
 import TodoItems from "./TodoItems";
 
-const TodoList = () => {
-  let todos = [];
+const TodoList = ({todos}) => {
   let editingID;
   let editingText;
   let onToggle;
@@ -27,7 +26,7 @@ const TodoList = () => {
   }
   return(
    <>
-    <div>
+    <div className="space-y-3">
       {todos.map((todo, index) => (
         <TodoItems
          key={index}

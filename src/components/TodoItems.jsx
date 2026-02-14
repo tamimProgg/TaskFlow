@@ -2,6 +2,7 @@ import { Check, Edit2, Save, Trash2, X } from "lucide-react";
 
 const TodoItems = ({
   todo,
+  index,
   editingID,
   editingText,
   onToggle,
@@ -17,10 +18,10 @@ const TodoItems = ({
   return (
     <>
       <div
-        className={`group-[] backdrop-blur-2xl bg-white/5 hover:bg-white/10 rounded-xl p-3 flex items-center gap-3 border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/10 ${todo.completed ? "opacity-50" : ""}`}
-        // style={{
-        //   animation: `slideIn 0.4s ease-out ${index * 0.05}s backwards`,
-        // }}
+        className={`group backdrop-blur-2xl bg-white/5 hover:bg-white/10 rounded-xl p-3 flex items-center gap-3 border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/10 ${todo.completed ? "opacity-50" : ""}`}
+        style={{
+          animation: `slideIn 0.4s ease-out ${index * 0.05}s backwards`,
+        }}
       >
         <button
           onClick={() => onToggle(todo.id)}

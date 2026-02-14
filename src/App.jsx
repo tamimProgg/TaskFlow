@@ -48,6 +48,13 @@ const App = () => {
     showNotification("✨ Task added successfully");
   };
 
+  //handle key press
+  const handleKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      handleAddTodo()
+    }
+  }
+
   // update todos
 
   // delete todos
@@ -67,8 +74,9 @@ const App = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onAdd={handleAddTodo}
+            onKeyPress={handleKeyPress}
           />
-          <TodoList />
+          <TodoList todos = {todos} />
           <ClearButton />
         </div>
         <style>
