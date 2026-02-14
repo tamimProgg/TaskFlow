@@ -1,8 +1,7 @@
 import { Sparkle } from "lucide-react";
 import TodoItems from "./TodoItems";
 
-const TodoList = ({todos, onDelete, onCancelEdit, onStartEdit, onSaveEdit, editingID,editingText, onEditTextChange, onEditKeyPress  }) => {
-  let onToggle;
+const TodoList = ({todos, onDelete, onCancelEdit, onStartEdit, onSaveEdit, editingID,editingText, onEditTextChange, onEditKeyPress, onToggle }) => {
 
   if(todos.length === 0) {
     return (

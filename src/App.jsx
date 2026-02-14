@@ -48,52 +48,70 @@ const App = () => {
     showNotification("✨ Task added successfully");
   };
 
+  //on toggle
+  const toggleTodo = (id) => {
+    setTodo(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
+    );
+    const todo = todos.find((t) => t.id === id)
+    if(!todo.completed) {
+      playSound('completed')
+      showNotification('🎉 Great Job! Task Completed')
+    }
+  };
+
   //handle key press
   const handleKeyPress = (e) => {
-    if(e.key === 'Enter'){
-      handleAddTodo()
+    if (e.key === "Enter") {
+      handleAddTodo();
     }
-  }
+  };
 
   //start edit
   const startEdit = (id, text) => {
-    setEditingID(id)
-    setEditingText(text)
-  }
+    setEditingID(id);
+    setEditingText(text);
+  };
 
   // update todos
   const saveEdit = (id) => {
-    if(!editingText.trim()) return
+    if (!editingText.trim()) return;
 
-    setTodo(todos.map((todo) => (todo.id === id ? {...todo, text:editingText} : {todo})))
+    setTodo(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, text: editingText } : { todo },
+      ),
+    );
 
-    setEditingText(null)
-    setEditingID(null)
-    playSound('update')
-    showNotification('Task Updated Successfully')
-  }
+    setEditingText(null);
+    setEditingID(null);
+    playSound("update");
+    showNotification("Task Updated Successfully");
+  };
 
   //edit keyPress
   const handleEditKeyPress = (e, id) => {
-    if(e.key === 'Enter') {
-      saveEdit(id)
-    } else if (e.key === 'Escape') {
-      cancelEdit()
+    if (e.key === "Enter") {
+      saveEdit(id);
+    } else if (e.key === "Escape") {
+      cancelEdit();
     }
-  }
+  };
 
   //cancel edit
   const cancelEdit = () => {
-    setEditingText('')
-    setEditingID(null)
-  }
+    setEditingText("");
+    setEditingID(null);
+  };
 
   // delete todos
   const handleDeleteTodo = (id) => {
-    setTodo(todos.filter((todo) => todo.id !== id))
-    playSound('delete')
-    showNotification('🗑️ Task deleted', 'info')
-  }
+    setTodo(todos.filter((todo) => todo.id !== id));
+    playSound("delete");
+    showNotification("🗑️ Task deleted", "info");
+  };
   return (
     <>
       <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-950 to-pink-950 p-3 sm:p-6 relative overflow-hidden">
@@ -112,15 +130,17 @@ const App = () => {
             onAdd={handleAddTodo}
             onKeyPress={handleKeyPress}
           />
-          <TodoList todos = {todos}
-            onDelete = {handleDeleteTodo}
-            onStartEdit = {startEdit}
-            onSaveEdit = {saveEdit}
-            onCancelEdit = {cancelEdit}
-            editingID = {editingID}
-            editingText = {editingText}
-            onEditTextChange = {(e) => setEditingText(e.target.value)}
-            onEditKeyPress = {handleEditKeyPress}
+          <TodoList
+            todos={todos}
+            onDelete={handleDeleteTodo}
+            onStartEdit={startEdit}
+            onSaveEdit={saveEdit}
+            onCancelEdit={cancelEdit}
+            editingID={editingID}
+            editingText={editingText}
+            onEditTextChange={(e) => setEditingText(e.target.value)}
+            onEditKeyPress={handleEditKeyPress}
+            onToggle = {toggleTodo}
           />
           <ClearButton />
         </div>
