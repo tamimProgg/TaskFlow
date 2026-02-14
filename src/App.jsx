@@ -55,9 +55,38 @@ const App = () => {
     }
   }
 
-
+  //start edit
+  const startEdit = (id, text) => {
+    setEditingID(id)
+    setEditingText(text)
+  }
 
   // update todos
+  const saveEdit = (id) => {
+    if(!editingText.trim()) return
+
+    setTodo(todos.map((todo) => (todo.id === id ? {...todo, text:editingText} : {todo})))
+
+    setEditingText(null)
+    setEditingID(null)
+    playSound('update')
+    showNotification('Task Updated Successfully')
+  }
+
+  //edit keyPress
+  const handleEditKeyPress = (e, id) => {
+    if(e.key === 'Enter') {
+      saveEdit(id)
+    } else if (e.key === 'Escape') {
+      cancelEdit()
+    }
+  }
+
+  //cancel edit
+  const cancelEdit = () => {
+    setEditingText('')
+    setEditingID(null)
+  }
 
   // delete todos
   const handleDeleteTodo = (id) => {
@@ -85,6 +114,13 @@ const App = () => {
           />
           <TodoList todos = {todos}
             onDelete = {handleDeleteTodo}
+            onStartEdit = {startEdit}
+            onSaveEdit = {saveEdit}
+            onCancelEdit = {cancelEdit}
+            editingID = {editingID}
+            editingText = {editingText}
+            onEditTextChange = {(e) => setEditingText(e.target.value)}
+            onEditKeyPress = {handleEditKeyPress}
           />
           <ClearButton />
         </div>
