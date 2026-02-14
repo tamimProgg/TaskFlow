@@ -6,8 +6,8 @@ import Input from "./components/Input";
 import Notification from "./components/Notification";
 import StatsGrid from "./components/StatsGrid";
 import TodoList from "./components/TodoList";
+import { playSound } from "./components/PlaySound";
 
-const playSound = (data) => {};
 
 const App = () => {
   const STORAGE_KEY = "todos";

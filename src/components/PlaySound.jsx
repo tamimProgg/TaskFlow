@@ -1,6 +1,16 @@
-const PlaySound = () => {
-  return (
-    <div>PlaySound</div>
-  )
+const sounds = {
+  add: '/sound/app.mp3',
+  complete: '/sound/complete.mp3',
+  delete: '/sound/delete.mp3',
+  update: '/sound/update.mp3'
 }
-export default PlaySound
+
+export const playSound = (type) => {
+  const sound = sounds[type]
+
+  if(!sound) return
+
+  const audio = new Audio(sound)
+  audio.volume = 0.6
+  audio.play().catch(() => {});
+}
