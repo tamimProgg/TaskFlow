@@ -1,10 +1,6 @@
 import { Plus } from "lucide-react";
 
-const Input = () => {
-  let value;
-  let onChange;
-  let onAdd;
-  let onKeyPress;
+const Input = ({value,onChange,onAdd,onKeyPress}) => {
   return (
     <div className="backdrop-blur-2xl bg-white/5 rounded-2xl border border-white/10 p-3 mb-4 shadow-2xl hover:bg-white/10 transition-all duration-300">
       <div className="flex gap-2">
