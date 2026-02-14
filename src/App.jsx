@@ -55,9 +55,16 @@ const App = () => {
     }
   }
 
+
+
   // update todos
 
   // delete todos
+  const handleDeleteTodo = (id) => {
+    setTodo(todos.filter((todo) => todo.id !== id))
+    playSound('delete')
+    showNotification('🗑️ Task deleted', 'info')
+  }
   return (
     <>
       <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-950 to-pink-950 p-3 sm:p-6 relative overflow-hidden">
@@ -76,7 +83,9 @@ const App = () => {
             onAdd={handleAddTodo}
             onKeyPress={handleKeyPress}
           />
-          <TodoList todos = {todos} />
+          <TodoList todos = {todos}
+            onDelete = {handleDeleteTodo}
+          />
           <ClearButton />
         </div>
         <style>

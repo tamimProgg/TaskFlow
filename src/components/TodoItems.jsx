@@ -57,13 +57,13 @@ const TodoItems = ({
           {isEditing ? (
             <>
               <button
-                onCanPlay={() => onSaveEdit(todo.id)}
+                onClick={() => onSaveEdit(todo.id)}
                 className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500 hover:text-white transition-all duration-300 flex items-center justify-center transform hover:scale-110 active:scale-95 border border-emerald-500/30"
               >
                 <Save size={14}/>
               </button>
               <button
-                onCanPlay={onCancelEdit}
+                onClick={onCancelEdit}
                 className="w-7 h-7 rounded-lg bg-white/10 text-white/60 hover:bg-white/20 hover:text-white transition-all duration-300 flex items-center justify-center transform hover:scale-110 active:scale-95"
               >
                 <X size={14}/>
@@ -72,13 +72,13 @@ const TodoItems = ({
           ) : (
             <>
               <button
-                onCanPlay={() => onStartEdit(todo.id, todo.text)}
+                onClick={() => onStartEdit(todo.id, todo.text)}
                 className="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-300 hover:text-white hover:bg-blue-500 transition-all duration-300 flex items-center justify-center transform hover:scale-110 active:scale-95 border border-blue-500/30"
               >
                 <Edit2 size={14}/>
               </button>
               <button
-                onCanPlay={() => onDelete(todo.id)}
+                onClick={() => onDelete(todo.id)}
                 className="w-7 h-7 rounded-lg bg-rose-500/20 text-rose-300 hover:bg-rose-500 hover:text-white transition-all duration-300 flex items-center justify-center transform hover:scale-110 active:scale-95 border border-rose-500/30"
               >
                 <Trash2 size={14}/>
