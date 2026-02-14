@@ -79,7 +79,7 @@ const App = () => {
     );
     const todo = todos.find((t) => t.id === id);
     if (!todo.completed) {
-      playSound("completed");
+      playSound("complete");
       showNotification("🎉 Great Job! Task Completed");
     }
   };
