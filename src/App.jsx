@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AnimatedBG from "./components/AnimatedBG";
 import ClearButton from "./components/ClearButton";
 import Header from "./components/Header";
@@ -21,8 +21,30 @@ const App = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   //get from localStorage
+  useEffect(() => {
+    try {
+      const savedTodos = localStorage.getItem(STORAGE_KEY)
+      if(savedTodos) {
+        setTodo(JSON.parse(savedTodos))
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setHasLoaded(true)
+    }
+  }, [])
 
   //save to localStorage
+  useEffect(() => {
+    if(!hasLoaded) return
+
+    try {
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(todos))
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }, [todos, hasLoaded])
 
   //show notification
   const showNotification = (message, type = "success") => {
