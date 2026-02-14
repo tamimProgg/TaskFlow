@@ -1,5 +1,5 @@
 const sounds = {
-  add: '/sound/app.mp3',
+  add: '/sound/add.mp3',
   complete: '/sound/complete.mp3',
   delete: '/sound/delete.mp3',
   update: '/sound/update.mp3'
